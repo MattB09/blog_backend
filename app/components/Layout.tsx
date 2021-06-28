@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 const Layout: FunctionComponent = ({ children }) => {
 
   return (
-    <div>
+    <div className="h-screen bg-gray-100">
       <Head>
         <title>Blog</title>
         <meta name="description" content="Blog application" />

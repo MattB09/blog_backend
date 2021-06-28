@@ -1,29 +1,38 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Link from 'next/link'
 
 export default function Navbar() {
+  const [status, setStatus] = useState('unauthenticated')
+  const [navDisplay, setNavDisplay] = useState('false');
 
+  // add useEffect to automatically turn nav to true when the window size is increased.
   function toggleNav() {
     console.log("clicked");
   }
 
   return (
-    <header>
+    <header className="flex items-center justify-between bg-blue-800 text-gray-100 py-3 px-6">
 
       <Link href="/">
-        <a className={`flex-centered`}>
-          <span className="">Blog</span>
+        <a className="no-underline font-bold p-2">
+          Blog
         </a>
       </Link>
 
-      <nav className="">
-        <ul className="">
-          <li className=""><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
+      <button className="md:hidden items-end">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <nav className="items-start">
+        <ul className="hidden top-navbar w-full md:inline-flex md:flex-grow md:w-auto ">
+          <li className="mr-3"><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
           {status === 'authenticated' 
           ? (
           <>
-            <li className=""><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
-            <li className=""><Link href="/mystack"><a onClick={toggleNav}>My Stack</a></Link></li>
+            <li className="mr-3"><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
+            <li className="mr-3"><Link href="/mystack"><a onClick={toggleNav}>My Stack</a></Link></li>
             <li className="">
               <button className="">
                 Logout
@@ -33,7 +42,7 @@ export default function Navbar() {
           )
           : (
           <>
-            <li className="" onClick={toggleNav}>About</li>
+            <li className="mr-3" onClick={toggleNav}><Link href="/about"><a onClick={toggleNav}>About</a></Link></li>
             <li className="">
               <Link href="/signin">
                 <a onClick={toggleNav} className="">
