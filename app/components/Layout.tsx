@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import Head from 'next/head'
-import Navbar from './Navbar';
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 const Layout: FunctionComponent = ({ children }) => {
 
@@ -11,7 +12,8 @@ const Layout: FunctionComponent = ({ children }) => {
         <meta name="description" content="Blog application" />
       </Head>
       <Navbar />
-      { children }
+        { children }
+      <Footer />
     </div>
   )
 }

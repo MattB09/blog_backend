@@ -1,12 +1,11 @@
-import React, {useState, useRef} from 'react'
+import React, {FunctionComponent, useState, useRef} from 'react'
 import Link from 'next/link'
 
-export default function Navbar() {
+const Navbar:FunctionComponent = () => {
   const [status, setStatus] = useState('unauthenticated')
   const navList = useRef<HTMLInputElement>(null);
 
   function toggleNav() {
-    console.log(navList);
     navList?.current?.classList.toggle('hidden');
   }
 
@@ -58,3 +57,5 @@ export default function Navbar() {
     </header>
   )
 }
+
+export default Navbar
