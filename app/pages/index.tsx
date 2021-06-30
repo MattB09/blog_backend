@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Home:FunctionComponent = () => {
   return (
-    <div >
+    <div>
       <main>
         <h1> HomePage</h1>
       </main>

@@ -1,26 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 import Link from 'next/link'
 
 export default function Navbar() {
   const [status, setStatus] = useState('unauthenticated')
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [navDisplay, setNavDisplay] = useState(false);
-
-  useEffect(()=> {
-    setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth);
-    });
-    if (windowWidth > 767) setNavDisplay(true);
-    else setNavDisplay(false);
-  }, [windowWidth])
+  const navList = useRef<HTMLInputElement>(null);
 
   function toggleNav() {
-    if (windowWidth < 768) setNavDisplay(prev => !prev);
+    console.log(navList);
+    navList?.current?.classList.toggle('hidden');
   }
 
   return (
-    <header className="flex items-center flex-wrap bg-blue-800 text-gray-100 py-3 px-6">
+    <header className="flex items-center flex-wrap bg-blue-800 text-gray-100 py-3 pl-10 pr-6 md:pl-14 md:pr-14">
 
       <Link href="/">
         <a className="no-underline font-bold">
@@ -34,7 +25,7 @@ export default function Navbar() {
         </svg>
       </button>
 
-      <nav className={`${!navDisplay && 'hidden'} ml-auto w-full md:w-auto`}>
+      <nav ref={navList} className="hidden ml-auto w-full md:inline-flex md:w-auto">
         <ul className="w-full items-start justify-end flex flex-col md:inline-flex md:flex-row md:w-auto md:ml-auto md:items-center md:h-auto">
           <li className="mr-3"><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
           {status === 'authenticated' 
