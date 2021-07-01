@@ -26,12 +26,12 @@ const Navbar:FunctionComponent = () => {
 
       <nav ref={navList} className="hidden ml-auto w-full md:inline-flex md:w-auto">
         <ul className="w-full items-start justify-end flex flex-col md:inline-flex md:flex-row md:w-auto md:ml-auto md:items-center md:h-auto">
-          <li className="mr-3"><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
+          <li className="mr-6"><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
           {status === 'authenticated' 
           ? (
           <>
-            <li className="mr-3"><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
-            <li className="mr-3"><Link href="/mystack"><a onClick={toggleNav}>My Stack</a></Link></li>
+            <li className="mr-6"><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
+            <li className="mr-6"><Link href="/mystack"><a onClick={toggleNav}>My Stack</a></Link></li>
             <li className="">
               <button className="">
                 Logout
@@ -41,7 +41,7 @@ const Navbar:FunctionComponent = () => {
           )
           : (
           <>
-            <li className="mr-3" onClick={toggleNav}><Link href="/about"><a onClick={toggleNav}>About</a></Link></li>
+            <li className="mr-6" onClick={toggleNav}><Link href="/about"><a onClick={toggleNav}>About</a></Link></li>
             <li className="">
               <Link href="/signin">
                 <a onClick={toggleNav} className="">
