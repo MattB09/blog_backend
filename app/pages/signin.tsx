@@ -26,11 +26,11 @@ const SignIn:FunctionComponent = () => {
         <form onSubmit={handleSubmit} className="mt-4">
 
           <label htmlFor="email" className="block text-sm text-gray-600 mb-2">Email</label>
-          <input id="email" value={email} type="email" placeholder="email" className="w-full px-4 py-1" 
+          <input id="email" value={email} type="email" placeholder="email" className="w-full px-4 py-1 rounded" 
               onChange={e => setEmail(e.target.value)} />
 
           <label htmlFor="password" className="block text-sm text-gray-600 mt-4 mb-2">Password</label>
-          <input id="password" value={password} type="password" placeholder="password" className="w-full px-4 py-1"
+          <input id="password" value={password} type="password" placeholder="password" className="w-full px-4 py-1 rounded"
             onChange={e => setPassword(e.target.value)} />
             
           
