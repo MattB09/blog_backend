@@ -1,0 +1,8 @@
+{ 
+  "compilerOptions": {
+    "outDir": "dist",                       
+    "rootDirs": ["./server", "./db"],                 
+    "allowJs": true,
+    "strict": true,
+  },                   
+}
