@@ -4,5 +4,6 @@
     "rootDirs": ["./server", "./db"],                 
     "allowJs": true,
     "strict": true,
-  },                   
+  },
+  "exclude": ["node_modules"]          
 }
