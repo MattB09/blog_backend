@@ -1,9 +1,19 @@
 { 
   "compilerOptions": {
     "outDir": "dist",                       
-    "rootDirs": ["./db", "./server"],                 
-    "allowJs": true,
-    "strict": true,
+    "rootDirs": ["./server"],                 
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "ES6",
+    "lib": [
+      "es2017"
+    ],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": "./server",
+    "noImplicitAny": true,
   },
-  "exclude": ["node_modules"]          
+  "include": ["server/**/*.ts"],
+  "exclude": ["**/node_modules", "dist"]          
 }
