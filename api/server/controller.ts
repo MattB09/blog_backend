@@ -1,9 +1,9 @@
 import pool from './db/index'
-import { Request, Response} from 'express'
+import { Request, response, Response} from 'express'
 
 const DEFAULT_LIMIT = 12
 
-const getStories = async (req: Request, res: Response) => {
+const getStories = async (req: Request, res: Response):Promise<Response> => {
   let page: number = Number(req.query.page) || 1
   let limit: number = Number(req.query.limit) || DEFAULT_LIMIT
   let offset: number = (page - 1) * limit
@@ -19,4 +19,14 @@ const getStories = async (req: Request, res: Response) => {
   });
 }
 
-export { getStories }
+const getStory = async (req: Request, res: Response): Promise<Response> => {
+  const result = await pool.query('SELECT * FROM stories WHERE id=$1', [req.params.id])
+  if (result.rowCount === 0) return response.sendStatus(404);
+
+  return res.status(200).json(result.rows[0]);
+}
+
+export { 
+  getStories, 
+  getStory 
+}
