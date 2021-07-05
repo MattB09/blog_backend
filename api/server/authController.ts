@@ -1,11 +1,10 @@
 import pool from './db/index'
 import bcrypt from 'bcrypt'
-import jwt, { JwtPayload } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import { createAccessToken, createRefreshToken, accessTokenExpire, refreshTokenExpire} from './auth'
 
 import { Request, response, Response } from 'express'
 import { UserInfo } from '../types'
-import { access } from 'fs'
 
 const login = async (req: Request, res:Response): Promise<Response> => {
   const email: string = req.body.email
@@ -91,7 +90,7 @@ const refreshToken = async (req: Request, res: Response): Promise<Response> => {
 
 const logout = async (req: Request, res: Response): Promise<Response> => {
   res.cookie('rt', '', { httpOnly: true })
-  return response.sendStatus(204)
+  return res.sendStatus(204)
 }
 
 export {

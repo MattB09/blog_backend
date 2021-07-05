@@ -1,5 +1,7 @@
 import pool from './db/index'
+import jwt from 'jsonwebtoken'
 import { Request, response, Response} from 'express'
+
 
 const DEFAULT_LIMIT: number = 12
 
@@ -46,13 +48,57 @@ const getUserStories = async (req: Request, res: Response): Promise<Response> =>
   })
 }
 
-// const addStory = async (req: Request, res: Response): Promise<Response> => {
+const addStory = async (req: Request, res: Response): Promise<Response> => {
+  const token: string = req.headers.authorization
+  const decoded = jwt.verify(token, process.env.JWT_SECRET)
+  const userId: number = (<any>decoded).userId
+  const title: string = req.body.title
+  const content: string = req.body.content
+  const photo_url: string = req.body.photo_url
 
-// }
+  if (!title || !content) {
+    return res.json({ error: 'title and content required' })
+  }
+
+  const addedStory = await pool.query('INSERT INTO stories (title, content, photo_url, user_id) VALUES ($1, $2, $3, $4) RETURNING *', [title, content, photo_url, userId])
+
+  return res.status(200).json(addedStory.rows[0])
+}
+
+const editStory = async (req: Request, res: Response): Promise<Response> => {
+  const token: string = req.headers.authorization
+  const decoded = jwt.verify(token, process.env.JWT_SECRET)
+  const userId: number = (<any>decoded).userId
+  const title: string = req.body.title
+  const content: string = req.body.content
+  const photo_url: string = req.body.photo_url
+  const storyId: number = Number(req.params.id)
+
+  if (!title || !content) {
+    return res.json({ error: 'title and content required' })
+  }
+
+  const editedStory = await pool.query('UPDATE stories SET title=$1, content=$2, photo_url=$3 WHERE id=$4 AND user_id=$5 RETURNING *', [title, content, photo_url, storyId, userId])
+
+  return res.status(200).json(editedStory.rows[0])
+}
+
+const deleteStory = async (req: Request, res: Response): Promise<Response> => {
+  const token = req.headers.authorization
+  const decode = jwt.verify(token, process.env.JWT_SECRET)
+  const userId = (<any>decode).userId
+  const storyId = req.params.id
+
+  const deletedStory =  await pool.query('DELETE FROM stories WHERE id=$1 AND user_id=$2 RETURNING *', [storyId, userId])
+
+  return res.status(200).json(deletedStory.rows[0])
+}
 
 export { 
   getStories, 
   getStory,
   getUserStories,
-  // addStory
+  addStory,
+  editStory,
+  deleteStory
 }
