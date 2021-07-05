@@ -37,7 +37,7 @@ const getUserStories = async (req: Request, res: Response): Promise<Response> =>
   let total = await pool.query('SELECT count(*) FROM stories WHERE user_id=$1', [req.params.id]);
   let result = await pool.query('SELECT stories.*, users.email, users.avatar_color FROM stories JOIN users ON stories.user_id = users.id WHERE users.id=$1 ORDER BY date_added DESC LIMIT $2 OFFSET $3', [req.params.id, limit, offset])
 
-  let pages = Math.ceil(Number(total.rows[0].count) / limit);
+  const pages: number = Math.ceil(Number(total.rows[0].count) / limit);
 
   return res.status(200).json({
     total: {stories: total.rows[0].count, pages},
@@ -46,8 +46,13 @@ const getUserStories = async (req: Request, res: Response): Promise<Response> =>
   })
 }
 
+// const addStory = async (req: Request, res: Response): Promise<Response> => {
+
+// }
+
 export { 
   getStories, 
   getStory,
   getUserStories,
+  // addStory
 }
