@@ -37,7 +37,7 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
 const authenticateRefresh = (req: Request, res: Response, next: NextFunction) => {
   const { cookies } = req
   if ('rt' in cookies && cookies['rt']) {
-    jwt.verify(cookies['rt'], process.env.REFRESH_SECRET, (err, decoded) => {
+    jwt.verify(cookies['rt'], process.env.REFRESH_SECRET, (err: Error, _:any) => {
       if (err) res.sendStatus(401)
       else next()
     })
@@ -46,10 +46,11 @@ const authenticateRefresh = (req: Request, res: Response, next: NextFunction) =>
   }
 }
 
-module.exports = { 
+export {
   createAccessToken,
   createRefreshToken,
   authenticate,
   authenticateRefresh,
-  accessTokenExpire
+  accessTokenExpire,
+  refreshTokenExpire
 }
