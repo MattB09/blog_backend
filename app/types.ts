@@ -9,6 +9,8 @@ export interface Story {
   title: string,
   content: string,
   photo_url: string | null,
-  date_added: Date,
-  user_id: number
+  date_added: string,
+  user_id: number,
+  email: string,
+  avatar_color: string
 }
