@@ -67,7 +67,7 @@ const login = async (req: Request, res:Response): Promise<Response> => {
 const refreshToken = async (req: Request, res: Response): Promise<Response> => {
   const token = req.cookies.rt
 
-  if (!token) return response.json({ ok: 'false', rt: '' })
+  if (!token) return res.json({ ok: 'false', rt: '' })
 
   let decoded = null;
 
