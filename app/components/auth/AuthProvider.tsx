@@ -14,7 +14,15 @@ type AuthContextType = {
   logout?: () => void
 }
 
-const AuthContext = createContext<AuthContextType | null>(null)
+const initialVal = {
+  user: null,
+  status: 'string', 
+  accessToken: null, 
+  login: (data:any) => {}, 
+  logout: () => {}
+}
+
+const AuthContext = createContext<AuthContextType>(initialVal)
 
 export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<number | null>(null)
@@ -55,4 +63,9 @@ export const AuthProvider = ({ children }: Props) => {
       { children }
     </AuthContext.Provider>
   )
+}
+
+// Export useContext Hook
+export const useAuthContext = (): AuthContextType => {
+  return useContext(AuthContext)
 }
