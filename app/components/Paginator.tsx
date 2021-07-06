@@ -15,9 +15,9 @@ const Paginator: React.FC<Props> = ({page, pages}) => {
   pagesArr.length === 0 ? pagesArr.push(1) : pagesArr
 
   return (
-    <nav className="">
+    <nav className="my-5 w-full flex justify-center">
       <Link href={`${router.pathname}?page=${page - 1}`}>
-        <a className={`${page === 1 ? 'opacity-50 pointer-events-none' : ''}`}>
+        <a className={`${page === 1 ? 'opacity-50 pointer-events-none bg-gray-300' : ''} mx-5 py-1 px-2 border border-blue-800 rounded flex align-center justify-center`}>
           <Image src="/left_arrow.png" alt="previous page" height="12" width="7.41" />
         </a>
       </Link>
@@ -25,7 +25,7 @@ const Paginator: React.FC<Props> = ({page, pages}) => {
       <div className="" >
         {pagesArr.map((p) => (
           <Link href={`${router.pathname}?page=${p}`} key={p}>
-            <a className={`${p === page ? 'pointer-events-none font-bold' : ""}`}>
+            <a className={`${p === page ? 'pointer-events-none font-bold' : ""} text-center mr-3 last:mr-0`}>
               {p}
             </a>
           </Link>
@@ -33,7 +33,7 @@ const Paginator: React.FC<Props> = ({page, pages}) => {
       </div>
 
       <Link href={`${router.pathname}?page=${page + 1}`}>
-        <a className={`${page >= pages ? 'opacity-50 pointer-events-none' : ""}`}>
+        <a className={`${page >= pages ? 'opacity-50 pointer-events-none bg-gray-300' : ""} mx-5 py-1 px-2 border border-blue-800 rounded flex align-center justify-center`}>
           <Image src="/right_arrow.png" alt="previous page" height="12" width="7.41" />
         </a>
       </Link>
