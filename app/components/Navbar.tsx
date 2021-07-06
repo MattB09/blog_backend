@@ -1,10 +1,10 @@
-import React, {FunctionComponent, useState, useRef} from 'react'
+import React, { useState, useRef} from 'react'
 import Link from 'next/link'
 import { useAuthContext } from './auth/AuthProvider'
 import API from '../utils/api'
 import router from 'next/router'
 
-const Navbar:FunctionComponent = () => {
+const Navbar: React.FC = () => {
   const { status, logout } = useAuthContext();
   const navList = useRef<HTMLInputElement>(null);
 

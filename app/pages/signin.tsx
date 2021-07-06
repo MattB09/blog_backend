@@ -3,7 +3,7 @@ import { useRouter, NextRouter } from 'next/router'
 import { useAuthContext } from "../components/auth/AuthProvider"
 import API from '../utils/api'
 
-const SignIn:FunctionComponent = () => {
+const SignIn: React.FC = () => {
   const { status, login } = useAuthContext()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');

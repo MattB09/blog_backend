@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Navbar from './Navbar'
 import Footer from './Footer'
@@ -6,7 +6,7 @@ import API from '../utils/api'
 import { useAuthContext } from './auth/AuthProvider'
 import { AxiosResponse } from 'axios'
 
-const Layout: FunctionComponent = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   const { login, status, logout } = useAuthContext()
 
   useEffect(() => {
