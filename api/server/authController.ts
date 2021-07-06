@@ -71,12 +71,8 @@ const refreshToken = async (req: Request, res: Response): Promise<Response> => {
 
   let decoded = null;
 
-  console.log('working', token)
-
   try {
-    console.log('working bf')
     decoded = jwt.verify(token, process.env.REFRESH_SECRET)
-    console.log('working after')
   } catch (err) {
     console.log(err)
     return res.json({ ok: 'false', rt: '' })

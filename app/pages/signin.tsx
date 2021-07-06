@@ -24,7 +24,6 @@ const SignIn:FunctionComponent = () => {
     }
 
     const result = await API.post(`/login`, {email, password}, {withCredentials: true})
-    console.log(result.data)
     login({ at: result.data.accessToken, expire: result.data.expire })
     router.push('/');
   }
