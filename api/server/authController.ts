@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { createAccessToken, createRefreshToken, accessTokenExpire, refreshTokenExpire} from './auth'
 
-import { Request, response, Response } from 'express'
+import { Request, Response } from 'express'
 import { UserInfo } from '../types'
 
 const login = async (req: Request, res:Response): Promise<Response> => {
@@ -39,7 +39,7 @@ const login = async (req: Request, res:Response): Promise<Response> => {
           expire: accessTokenExpire
         })
       } else {
-        return response.status(401).json({ error: 'Invalid password'})
+        return res.status(401).json({ error: 'Invalid password'})
       }
     } catch (err) {
       console.log(err)
@@ -60,7 +60,7 @@ const login = async (req: Request, res:Response): Promise<Response> => {
     res.cookie('rt', createRefreshToken(payload), { expires: new Date(Date.now() + refreshTokenExpire), httpOnly: true })
     return res.status(200).json({ accessToken: createAccessToken(payload), expire: accessTokenExpire })
   } catch (err) {
-    return response.status(400).json({error: err})
+    return res.status(400).json({error: err})
   }
 }
 
@@ -71,8 +71,12 @@ const refreshToken = async (req: Request, res: Response): Promise<Response> => {
 
   let decoded = null;
 
+  console.log('working', token)
+
   try {
+    console.log('working bf')
     decoded = jwt.verify(token, process.env.REFRESH_SECRET)
+    console.log('working after')
   } catch (err) {
     console.log(err)
     return res.json({ ok: 'false', rt: '' })

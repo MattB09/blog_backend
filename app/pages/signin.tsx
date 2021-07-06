@@ -1,27 +1,38 @@
-import React, {FormEvent, FunctionComponent, useState} from "react"
-import router, { useRouter } from 'next/router';
+import React, {FormEvent, FunctionComponent, useState, useEffect } from "react"
+import { useRouter, NextRouter } from 'next/router'
+import { useAuthContext } from "../components/auth/AuthProvider"
+import API from '../utils/api'
 
 const SignIn:FunctionComponent = () => {
-  const [email, setEmail] = useState('');
+  const { status, login } = useAuthContext()
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
+  const router: NextRouter = useRouter()
 
-  const handleSubmit: (clickEvent:FormEvent<HTMLFormElement>) => void = (e) => {
-    e.preventDefault()
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.push('/')
+    }
+  }, [status])
+
+  const handleSubmit = async (clickEvent:FormEvent<HTMLFormElement>): Promise<void> => {
+    clickEvent.preventDefault()
 
     if (email === '' || password === '') {
       alert("must fill out form");
       return;
     }
 
-    console.log(email, password);
+    const result = await API.post(`/login`, {email, password}, {withCredentials: true})
+    console.log(result.data)
+    login({ at: result.data.accessToken, expire: result.data.expire })
     router.push('/');
-    
   }
 
   return (
     <main className="flex flex-col justify-center px-4 mt-8 sm:w-96 mx-auto">
-      {/* {status == 'unauthenticated' && 
-      (<>  */}
+      {status == 'unauthenticated' && 
+      (<> 
         <h1 className="font-bold text-4xl tracking-wide block">Sign In</h1>
         <form onSubmit={handleSubmit} className="mt-4">
 
@@ -36,7 +47,7 @@ const SignIn:FunctionComponent = () => {
           
           <button type="submit" className="bg-blue-800 text-gray-100 py-1 rounded text-center w-full mt-8">Sign In</button>
         </form>
-      {/* </>)} */}
+      </>)}
     </main>
   )
 }

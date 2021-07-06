@@ -1,10 +1,18 @@
 import React, {FunctionComponent, useState, useRef} from 'react'
 import Link from 'next/link'
 import { useAuthContext } from './auth/AuthProvider'
+import API from '../utils/api'
+import router from 'next/router'
 
 const Navbar:FunctionComponent = () => {
   const { status, logout } = useAuthContext();
   const navList = useRef<HTMLInputElement>(null);
+
+  const handleLogoutClicked = (): void => {
+    API.post(`/logout`, {}, { withCredentials: true })
+    logout()
+    router.push(`/`)
+  }
 
   function toggleNav() {
     navList?.current?.classList.toggle('hidden');
@@ -34,7 +42,7 @@ const Navbar:FunctionComponent = () => {
             <li className="mr-6"><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
             <li className="mr-6"><Link href="/mystack"><a onClick={toggleNav}>My Stack</a></Link></li>
             <li className="">
-              <button className="px-2 py-1 bg-gray-100 text-blue-800 hover:bg-gray-300 rounded outline-none focus:outline-none">
+              <button onClick={handleLogoutClicked} className="px-2 py-1 bg-gray-100 text-blue-800 hover:bg-gray-400 rounded outline-none focus:outline-none">
                 Logout
               </button>
             </li>
@@ -45,7 +53,7 @@ const Navbar:FunctionComponent = () => {
             <li className="mr-6" onClick={toggleNav}><Link href="/about"><a onClick={toggleNav}>About</a></Link></li>
             <li className="">
               <Link href="/signin">
-                <a onClick={toggleNav} className="px-2 py-1 bg-gray-100 text-blue-800 hover:bg-gray-300 rounded outline-none focus:outline-none">
+                <a onClick={toggleNav} className="px-2 py-1 bg-gray-100 text-blue-800 hover:bg-gray-400 rounded outline-none focus:outline-none">
                   Sign In
                 </a>
               </Link>

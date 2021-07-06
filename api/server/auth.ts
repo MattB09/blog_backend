@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 
 import { UserInfo } from '../types'
 
-const accessTokenExpire: string = "5m"
+const accessTokenExpire: number = 60 * 5 // 5 minutes
 const refreshTokenExpire: string = "7d"
 
 const createAccessToken = (user: UserInfo): string => {
