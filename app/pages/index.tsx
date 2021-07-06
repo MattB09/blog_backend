@@ -5,6 +5,7 @@ import Image from 'next/image'
 import API from '../utils/api'
 import { Story } from '../types'
 import StoryCard from '../components/StoryCard'
+import Paginator from '../components/Paginator'
 
 interface Totals {
   stories: number,
@@ -53,6 +54,7 @@ const Home: React.FC = ({stories}: InferGetServerSidePropsType<typeof getServerS
             <StoryCard key={story.id} story={story} myStack={false} />
           ))}
         </div>
+        <Paginator pages={stories.total.pages} page={stories.page} />
       </main>
     </div>
   )
