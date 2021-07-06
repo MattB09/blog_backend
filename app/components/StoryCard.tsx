@@ -5,7 +5,7 @@ import { Story } from '../types'
 interface Props {
   story: Story,
   myStack: boolean,
-  deleteFunc: (id: number) => {}
+  deleteFunc?: (id: number) => {}
 }
 
 const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
