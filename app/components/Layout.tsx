@@ -1,19 +1,42 @@
-import React, {FunctionComponent} from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import Head from 'next/head'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import API from '../utils/api'
+import { useAuthContext } from './auth/AuthProvider'
+import { AxiosResponse } from 'axios'
 
 const Layout: FunctionComponent = ({ children }) => {
+  const { login, status, logout } = useAuthContext()
+
+  useEffect(() => {
+    (async () => {
+      if (localStorage.getItem('logged') !== 'true') {
+        logout()
+        return
+      }
+      const result: AxiosResponse = await API.post(`/refresh_token`, {}, {withCredentials: true})
+      if (result.data.ok === 'true') {
+        login({ at: result.data.accessToken, expire: result.data.expire })
+      } else {
+        logout()
+      }
+    })()
+  }, [])
 
   return (
     <div>
-      <Head>
-        <title>Blog</title>
-        <meta name="description" content="Blog application" />
-      </Head>
-      <Navbar />
-        { children }
-      <Footer />
+      {status !== 'pending' && 
+        (<>
+          <Head>
+            <title>Blog</title>
+            <meta name="description" content="Blog application" />
+          </Head>
+          <Navbar />
+            { children }
+          <Footer />
+        </>)
+      }
     </div>
   )
 }

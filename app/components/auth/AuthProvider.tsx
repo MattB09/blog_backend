@@ -10,8 +10,8 @@ type AuthContextType = {
   user: number | null,
   status?: string, 
   accessToken: string | null, 
-  login?: (data: any) => void, 
-  logout?: () => void
+  login: (data: any) => void, 
+  logout: () => void
 }
 
 const initialVal = {
