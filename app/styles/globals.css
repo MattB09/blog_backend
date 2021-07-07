@@ -8,8 +8,7 @@ body {
   margin: 0;
   font-family: -apple-system, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  --tw-bg-opacity: 1;
-  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  @apply bg-gray-100
 }
 
 * {

@@ -36,9 +36,11 @@ export const AuthProvider = ({ children }: Props) => {
     setStatus('authenticated')
     localStorage.setItem('logged', 'true')
     startRefreshTimer(data.expire)
+    console.log('login attempt')
   }
 
   const logout = (): void => {
+    console.log('logging out')
     setUser(null)
     setAccessToken(null)
     setStatus('unauthenticated')
@@ -46,11 +48,14 @@ export const AuthProvider = ({ children }: Props) => {
   }
 
   const startRefreshTimer = (expiration: number): void => {
+    console.log("refresh timer function")
     let refreshTimer = setInterval(() => {
       API.post(`refresh_token`, {}, { withCredentials: true }).then(async data => {
         if (data.data.ok === 'true') {
+          "refresh okay"
           setAccessToken(data.data.at)
         } else {
+          "refresh not okay"
           clearInterval(refreshTimer);
           logout()
         }

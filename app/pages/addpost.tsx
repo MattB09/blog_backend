@@ -61,17 +61,17 @@ const addpost:React.FC = () => {
   }
 
   return (
-    <main className="">
+    <main className="flex flex-col justify-center px-4 mt-8 mx-auto sm:w-96">
       {status === 'authenticated' && (
         <>
-          <h1 className="">Add a post</h1>
-          <form onSubmit={handlePostSubmit}>
+          <h1 className="font-bold text-4xl tracking-wide block">Add a post</h1>
+          <form onSubmit={handlePostSubmit} className="mt-4">
             
-            <label htmlFor="title">Title  <span className="">Required</span></label>
-            <input id="title" type="text" onChange={(e)=> setTitle(e.target.value)} required /> 
+            <label htmlFor="title" className="block text-sm text-gray-600 mb-2">Title  <span className="text-red-400 text-xs">Required</span></label>
+            <input id="title" type="text" className="w-full px-4 py-1 rounded" onChange={(e)=> setTitle(e.target.value)} required /> 
 
-            <label htmlFor="description">Description  <span className="">Required</span></label>
-            <textarea id="description" onChange={(e)=> setContent(e.target.value)} required >
+            <label htmlFor="description" className="block text-sm text-gray-600 mb-2">Description  <span className="text-red-400 text-xs">Required</span></label>
+            <textarea id="description" className="w-full h-48 px-4 py-1 rounded" onChange={(e)=> setContent(e.target.value)} required >
             </textarea>
             
             <div className=""> 

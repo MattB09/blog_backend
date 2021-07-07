@@ -84,6 +84,8 @@ const refreshToken = async (req: Request, res: Response): Promise<Response> => {
     avatar: (<any>decoded).avatar
   }
 
+  console.log(user)
+
   res.cookie('rt', createRefreshToken(user), { expires: new Date(Date.now() + refreshTokenExpire), httpOnly: true })
   return res.json({ok: 'true', accessToken: createAccessToken(user), expire: accessTokenExpire })
 }
