@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
           ? (
           <>
             <li className="mr-6"><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
-            <li className="mr-6"><Link href="/mystack"><a onClick={toggleNav}>My Stack</a></Link></li>
+            <li className="mr-6"><Link href="/myposts"><a onClick={toggleNav}>My Posts</a></Link></li>
             <li className="">
               <button onClick={handleLogoutClicked} className="px-2 py-1 bg-gray-100 text-blue-800 hover:bg-gray-400 rounded outline-none focus:outline-none">
                 Logout
