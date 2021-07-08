@@ -17,7 +17,7 @@ const createAccessToken = (user: UserInfo): string => {
 const createRefreshToken = (user:UserInfo): string => {
   return jwt.sign(
     user,
-    process.env.JWT_SECRET, 
+    process.env.REFRESH_SECRET, 
     {expiresIn: refreshTokenExpire}
   )
 }
