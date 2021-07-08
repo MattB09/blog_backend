@@ -14,3 +14,14 @@ export interface Story {
   email: string,
   avatar_color: string
 }
+
+export interface Totals {
+  stories: number,
+  pages: number
+}
+
+export interface StoriesData {
+  total: Totals
+  page: number,
+  rows: Story[]
+}

@@ -7,16 +7,6 @@ import { Story } from '../types'
 import StoryCard from '../components/StoryCard'
 import Paginator from '../components/Paginator'
 
-interface Totals {
-  stories: number,
-  pages: number
-}
-
-interface StoriesData {
-  total: Totals
-  page: number,
-  rows: Story[]
-}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let result
@@ -47,8 +37,8 @@ const Home: React.FC = ({stories}: InferGetServerSidePropsType<typeof getServerS
 
   return (
     <div>
+      <h1>HomePage</h1>
       <main>
-        <h1>HomePage</h1>
         <div>
           {stories.rows.length > 0 && stories.rows.map((story:Story, ind: number) => (
             <StoryCard key={story.id} story={story} myStack={false} />
