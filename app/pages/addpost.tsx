@@ -70,21 +70,20 @@ const addpost:React.FC = () => {
             <label htmlFor="title" className="block text-sm text-gray-600 mb-2">Title  <span className="text-red-400 text-xs">Required</span></label>
             <input id="title" type="text" className="w-full px-4 py-1 rounded" onChange={(e)=> setTitle(e.target.value)} required /> 
 
-            <label htmlFor="description" className="block text-sm text-gray-600 mb-2">Description  <span className="text-red-400 text-xs">Required</span></label>
+            <label htmlFor="description" className="block text-sm text-gray-600 mb-2 mt-4">Description  <span className="text-red-400 text-xs">Required</span></label>
             <textarea id="description" className="w-full h-48 px-4 py-1 rounded" onChange={(e)=> setContent(e.target.value)} required >
             </textarea>
             
-            <div className=""> 
-              <input id="upload" className=""
-                type="file" accept="image/png, image/jpeg" onChange={handleFileChange} />
-              <label htmlFor="upload">
-                <span className="">Upload</span>
-                <Image src='/attachment.png' width={9.96} height={12} alt='Stacked Logo' />
-                <p className="">{photoFile === null ? "" : photoFile.name}</p>             
+            <div className="flex w-full items-center justify-start mt-4 mb-4"> 
+              <label className="border border-blue-800 text-gray-600 hover:bg-blue-800 hover:text-gray-100 cursor-pointer py-2 px-4 rounded inline-flex items-center justify-center">
+                <span className="text-semibold">{photoFile === null ? "Upload Image" : "Uploaded: "}</span>
+                <p className="ml-2 italic">{photoFile === null ? "" : photoFile.name}</p>
+                <input id="upload" className="hidden"
+                type="file" accept="image/png, image/jpeg" onChange={handleFileChange} />             
               </label>
             </div>
 
-            <button type="submit" className="">Post</button> 
+            <button type="submit" className="bg-blue-800 hover:bg-blue-900 text-gray-100 rounded px-4 py-1 w-full">Post</button> 
           </form>
         </>
       )}
