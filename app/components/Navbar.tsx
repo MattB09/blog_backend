@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
     <header className="flex items-center flex-wrap bg-blue-800 text-gray-100 py-3 pl-10 pr-6 md:pl-14 md:pr-14">
 
       <Link href="/">
-        <a className="no-underline font-bold">
+        <a className="no-underline font-bold text-2xl tracking-wider">
           Blog
         </a>
       </Link>
