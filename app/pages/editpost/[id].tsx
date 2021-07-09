@@ -58,7 +58,7 @@ const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSid
     <main className="flex flex-col justify-center px-4 mt-8 mx-auto sm:w-96">
       {status === 'authenticated' && (
         <>
-          <h1 className="font-bold text-4xl tracking-wide block">Edit Post</h1>
+          <h1 className="font-bold text-4xl tracking-wide block text-blue-800 mt-4">Edit Post</h1>
           <form onSubmit={handlePostSubmit} className="mt-4">
 
             <label htmlFor="title" className="block text-sm text-gray-600 mb-2">Title  <span className="text-red-400 text-xs">Required</span></label>

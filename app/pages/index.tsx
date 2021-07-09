@@ -36,10 +36,10 @@ const Home: React.FC = ({stories}: InferGetServerSidePropsType<typeof getServerS
   // }, [windowWidth])
 
   return (
-    <div>
-      <h1>HomePage</h1>
-      <main>
-        <div>
+    <div className="max-w-screen-xl px-8 mx-auto">
+      <h1 className="font-bold text-4xl tracking-wide block text-center text-blue-800 mt-4">All Posts</h1>
+      <main className="mx-auto mt-4">
+        <div className="sm:grid sm:gap-x-8 sm:gap-y-8 md:grid-cols-2 xl:grid-cols-3" >
           {stories.rows.length > 0 && stories.rows.map((story:Story, ind: number) => (
             <StoryCard key={story.id} story={story} myStack={false} />
           ))}

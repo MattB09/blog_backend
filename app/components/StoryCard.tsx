@@ -18,18 +18,18 @@ const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
   }
 
   return (
-    <article className="">
+    <article className="p-4 shadow-md rounded">
 
       {/* avatar, user and date of story */}
       {!myStack && (
-        <div className="">
-          <div className="">
+        <div className="flex justify-center">
+          <div className="flex align-center">
             <svg viewBox="0 0 100 100" height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill={story.avatar_color}>
               <circle cx="50%" cy="50%" r="50%" />
             </svg>
-            <h3>{story.email.split('@')[0]}</h3>
+            <h3 className="inline-block ml-3">{story.email?.split('@')[0]}</h3>
           </div>
-          <time className="">{dateFormat(story.date_added)}</time>
+          <time className="ml-auto text-gray-400 text-sm">{dateFormat(story.date_added)}</time>
         </div>
       )}
 
@@ -41,8 +41,8 @@ const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
       </div>
 
       {/* title and content */}
-      <h2 className="">{story.title}</h2>
-      <p className="">{story.content}</p>
+      <h2 className="mt-4 text-lg font-semibold">{story.title}</h2>
+      <p className="mt-2">{story.content}</p>
 
       { myStack && (
         <div className="">
