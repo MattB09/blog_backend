@@ -11,8 +11,8 @@ export interface Story {
   photo_url: string | null,
   date_added: string,
   user_id: number,
-  email: string,
-  avatar_color: string
+  email?: string,
+  avatar_color?: string
 }
 
 export interface Totals {
