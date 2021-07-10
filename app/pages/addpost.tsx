@@ -47,6 +47,7 @@ const addpost:React.FC = () => {
     }
 
     await API.post(`/stories`, { title, content, photo_url}, { headers: {'Authorization': `${accessToken}`}, withCredentials: true})
+    
     router.push('/myposts')
   }
 
