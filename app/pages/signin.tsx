@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
   }
 
   return (
-    <main className="flex flex-col justify-center px-4 mt-8 sm:w-96 mx-auto">
+    <main className="flex flex-col justify-center px-4 mt-4 sm:w-96 mx-auto">
       {status == 'unauthenticated' && 
       (<> 
         <h1 className="font-bold text-4xl tracking-wide block">Sign In</h1>

@@ -35,13 +35,13 @@ const Navbar: React.FC = () => {
 
       <nav ref={navList} className="hidden ml-auto w-full md:inline-flex md:w-auto">
         <ul className="w-full items-start justify-end flex flex-col md:inline-flex md:flex-row md:w-auto md:ml-auto md:items-center md:h-auto">
-          <li className="mr-6"><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
+          <li className="mt-1 md:mt-0 md:mr-6"><Link href="/"><a onClick={toggleNav}>Home</a></Link></li>
           {status === 'authenticated' 
           ? (
           <>
-            <li className="mr-6"><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
-            <li className="mr-6"><Link href="/myposts"><a onClick={toggleNav}>My Posts</a></Link></li>
-            <li className="">
+            <li className="mt-1 md:mt-0 md:mr-6"><Link href="/addpost"><a onClick={toggleNav}>Add a Post</a></Link></li>
+            <li className="mt-1 md:mt-0 md:mr-6"><Link href="/myposts"><a onClick={toggleNav}>My Posts</a></Link></li>
+            <li className="mt-2 md:mt-0">
               <button onClick={handleLogoutClicked} className="px-2 py-1 bg-gray-100 text-blue-800 hover:bg-gray-400 rounded outline-none focus:outline-none">
                 Logout
               </button>
@@ -50,8 +50,8 @@ const Navbar: React.FC = () => {
           )
           : (
           <>
-            <li className="mr-6" onClick={toggleNav}><Link href="/about"><a onClick={toggleNav}>About</a></Link></li>
-            <li className="">
+            <li className="mt-1 md:mt-0 md:mr-6" onClick={toggleNav}><Link href="/about"><a onClick={toggleNav}>About</a></Link></li>
+            <li className="mt-2 md:mt-0">
               <Link href="/signin">
                 <a onClick={toggleNav} className="px-2 py-1 bg-gray-100 text-blue-800 hover:bg-gray-400 rounded outline-none focus:outline-none">
                   Sign In

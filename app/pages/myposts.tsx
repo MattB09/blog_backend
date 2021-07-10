@@ -50,12 +50,12 @@ const myposts: React.FC = () => {
   }
 
   return (
-    <div className="">
+    <div className="max-w-screen-xl px-8 mx-auto">
       {status === 'authenticated' && (
         <>
-          <h1>MyPosts</h1>
-          <main className="">
-            <div className="">
+          <h1 className="font-bold text-4xl tracking-wide block text-center text-blue-800 mt-4">MyPosts</h1>
+          <main className="mx-auto mt-4">
+            <div className="sm:grid sm:gap-x-8 sm:gap-y-8 md:grid-cols-2 xl:grid-cols-3">
               {stories !== null && stories!.rows.map((story: Story) => (
                 <StoryCard key={story.id} story={story} myStack={true} deleteFunc={handleDeleteClicked} />
               ))}

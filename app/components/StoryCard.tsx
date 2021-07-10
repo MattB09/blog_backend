@@ -5,7 +5,7 @@ import { Story } from '../types'
 interface Props {
   story: Story,
   myStack: boolean,
-  deleteFunc?: (id: number) => {}
+  deleteFunc?: (id: number) => Promise<void>
 }
 
 const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
@@ -18,36 +18,40 @@ const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
   }
 
   return (
-    <article className="p-4 shadow-md rounded">
+    <article className={`p-4 shadow-md rounded flex flex-col justify-between ${story.photo_url !== null && 'col-span-2'}`}>
 
-      {/* avatar, user and date of story */}
-      {!myStack && (
-        <div className="flex justify-center">
-          <div className="flex align-center">
-            <svg viewBox="0 0 100 100" height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill={story.avatar_color}>
-              <circle cx="50%" cy="50%" r="50%" />
-            </svg>
-            <h3 className="inline-block ml-3">{story.email?.split('@')[0]}</h3>
+      <div>
+
+        {/* avatar, user and date of story */}
+        {!myStack && (
+          <div className="flex justify-center mb-4">
+            <div className="flex align-center">
+              <svg viewBox="0 0 100 100" height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill={story.avatar_color}>
+                <circle cx="50%" cy="50%" r="50%" />
+              </svg>
+              <h3 className="inline-block ml-3">{story.email?.split('@')[0]}</h3>
+            </div>
+            <time className="ml-auto text-gray-400 text-sm">{dateFormat(story.date_added)}</time>
           </div>
-          <time className="ml-auto text-gray-400 text-sm">{dateFormat(story.date_added)}</time>
-        </div>
-      )}
-
-      {/* Photo */}
-      <div className="">
-        { story.photo_url !== null && (
-          <img src={story.photo_url} alt={story.title} height={200} width={350} loading="lazy" />
         )}
+
+        {/* Photo */}
+        { story.photo_url !== null && (
+          <div className="mb-4">
+            <img src={story.photo_url} alt={story.title} height={200} width={350} loading="lazy" />
+          </div>
+        )}
+
+        {/* title and content */}
+        <h2 className="text-lg font-semibold">{story.title}</h2>
+        <p className="mt-2">{story.content}</p>
+
       </div>
 
-      {/* title and content */}
-      <h2 className="mt-4 text-lg font-semibold">{story.title}</h2>
-      <p className="mt-2">{story.content}</p>
-
       { myStack && (
-        <div className="">
-          <button className="" onClick={() => deleteFunc(story.id)}>Delete</button>
-          <Link href={`/editpost/${story.id}`}><a className="">
+        <div className="flex justify-center mt-2">
+          <button className="rounded bg-red-200 text-gray-800 py-1 px-4 w-32 hover:bg-red-400 mr-8" onClick={() => deleteFunc!(story.id)}>Delete</button>
+          <Link href={`/editpost/${story.id}`}><a className="rounded flex justify-center bg-blue-200 hover:bg-blue-500 text-gray-800 py-1 px-4 w-32">
             Edit
           </a></Link>
         </div>

@@ -55,17 +55,17 @@ const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSid
   }
 
   return (
-    <main className="flex flex-col justify-center px-4 mt-8 mx-auto sm:w-96">
+    <main className="flex flex-col justify-center px-4 mt-4 mx-auto sm:w-96">
       {status === 'authenticated' && (
         <>
           <h1 className="font-bold text-4xl tracking-wide block text-blue-800 mt-4">Edit Post</h1>
           <form onSubmit={handlePostSubmit} className="mt-4">
 
             <label htmlFor="title" className="block text-sm text-gray-600 mb-2">Title  <span className="text-red-400 text-xs">Required</span></label>
-            <input id="title" type="text" className="w-full px-4 py-1 rounded" onChange={(e)=> setTitle(e.target.value)} required /> 
+            <input id="title" type="text" className="w-full px-4 py-1 rounded" value={title} onChange={(e)=> setTitle(e.target.value)} required /> 
 
             <label htmlFor="description" className="block text-sm text-gray-600 mb-2 mt-4">Description  <span className="text-red-400 text-xs">Required</span></label>
-            <textarea id="description" className="w-full h-48 px-4 py-1 rounded" onChange={(e)=> setContent(e.target.value)} required >
+            <textarea id="description" className="w-full h-48 px-4 py-1 rounded" value={content} onChange={(e)=> setContent(e.target.value)} required >
             </textarea>
 
             <div className="flex w-full items-center justify-start mt-4 mb-4"> 
