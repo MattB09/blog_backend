@@ -14,7 +14,7 @@ export const generateUploadUrl = async (photoName: string): Promise<string> => {
     Key: photoName,
   }
 
-  const url: Promise<string> = s3.getSignedUrlPromise('putObject', params)
+  const url: string = await s3.getSignedUrlPromise('putObject', params)
 
   return url;
 }
