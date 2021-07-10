@@ -11,9 +11,7 @@ const Layout: React.FC = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      console.log('refresh attempt')
       if (localStorage.getItem('logged') !== 'true') {
-        console.log("not found in local storage")
         logout()
         return
       }

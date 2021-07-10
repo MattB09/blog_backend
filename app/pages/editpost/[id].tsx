@@ -49,7 +49,6 @@ const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSid
 
   const handleFileChange = (changeEvent: React.ChangeEvent<HTMLInputElement>): void => {
     const files: FileList = changeEvent.target.files!
-    console.log(files)
     let file: File | null = (files.length === 0) ? null : files[0]
     setPhotoFile(file)
   }
