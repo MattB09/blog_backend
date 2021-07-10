@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getStories, getStory, getUserStories, addStory, editStory, deleteStory } from './controller'
+import { getStories, getStory, getUserStories, addStory, editStory, deleteStory, getUploadUrl } from './controller'
 import { login, refreshToken, logout } from './authController'
 import { authenticate } from './auth'
 
@@ -19,5 +19,8 @@ routes.get('/users/:id', getUserStories)
 routes.post('/stories', authenticate, addStory)
 routes.put('/stories/:id', authenticate, editStory)
 routes.delete('/stories/:id', authenticate, deleteStory)
+
+// s3 upload url
+routes.get('/s3upload/:filename', getUploadUrl)
 
 export default routes
