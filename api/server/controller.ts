@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import { Request, response, Response} from 'express'
 import { generateUploadUrl } from './s3'
 
-
 const DEFAULT_LIMIT: number = 6
 
 export const getStories = async (req: Request, res: Response):Promise<Response> => {
@@ -96,8 +95,6 @@ export const deleteStory = async (req: Request, res: Response): Promise<Response
 }
 
 export const getUploadUrl = async (req: Request, res: Response): Promise<Response> => {
-  console.log("params", req.params.filename)
-
   const fileName: string = req.params.filename
 
   const url:string = await generateUploadUrl(fileName)

@@ -35,21 +35,22 @@ const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
           </div>
         )}
 
+        {/* title and content */}
+        <h2 className="text-lg font-semibold mb-4">{story.title}</h2>
+
         {/* Photo */}
         { story.photo_url !== null && (
-          <div className="mb-4">
-            <img src={story.photo_url} alt={story.title} height={200} width={350} loading="lazy" />
+          <div className="mb-4 h-60 rounded overflow-hidden flex align-middle justify-center bg-gray-200">
+            <img src={story.photo_url} className="object-contain" alt={story.title} height={200} width={350} loading="lazy" />
           </div>
         )}
 
-        {/* title and content */}
-        <h2 className="text-lg font-semibold">{story.title}</h2>
-        <p className="mt-2">{story.content}</p>
+        <p className="mb-4">{story.content}</p>
 
       </div>
 
       { myStack && (
-        <div className="flex justify-center mt-2">
+        <div className="flex justify-center">
           <button className="rounded bg-red-200 text-gray-800 py-1 px-4 w-32 hover:bg-red-400 mr-8" onClick={() => deleteFunc!(story.id)}>Delete</button>
           <Link href={`/editpost/${story.id}`}><a className="rounded flex justify-center bg-blue-200 hover:bg-blue-500 text-gray-800 py-1 px-4 w-32">
             Edit
