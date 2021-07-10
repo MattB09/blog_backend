@@ -6,7 +6,7 @@ module.exports = {
   },
   variants: {
     extend: {},
-    margin: ["last"]
+    margin: ["last", "responsive"]
   },
   plugins: [],
 }

@@ -31,15 +31,10 @@ const addpost:React.FC = () => {
       let fd = new FormData()
       fd.append("file", photoFile)
 
-      console.log("fd", fd)
-      console.log("photoFile", photoFile)
-
       let upload_url = await API.get(
         `/s3upload/${photoFile.name}`,
         {headers: {'Authorization': `${accessToken}`}, withCredentials: true}
       )
-
-      console.log("upload_url", upload_url.data.split('?')[0])
 
       let res = await axios({
         url: `${upload_url.data}`,
@@ -47,8 +42,6 @@ const addpost:React.FC = () => {
         headers: {"Content-Type": "multipart/form-data"},
         data: photoFile
       });
-
-      console.log(res)
 
       photo_url = upload_url.data.split('?')[0]
     }
