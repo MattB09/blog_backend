@@ -44,10 +44,10 @@ const SignIn: React.FC = () => {
   }
 
   return (
-    <main className="flex flex-wrap justify-center px-4 mt-4 mx-auto">
+    <main className="flex flex-col md:flex-row justify-center px-4 mt-4 mx-auto">
       {status == 'unauthenticated' && 
       (<>
-      <div className="w-full sm:w-96"> 
+      <div className="w-full sm:w-80 md:mr-16 mx-auto md:mx-0 justify-center"> 
         <h1 className="font-bold text-4xl tracking-wide block">Sign In</h1>
         <form onSubmit={handleSignInSubmit} className="mt-4">
 
@@ -64,8 +64,8 @@ const SignIn: React.FC = () => {
         </form>
       </div>
 
-      <div className="w-full sm:w-96">  
-        <h1 className="font-bold text-4xl tracking-wide block mt-16 lg:mt-4">New User? Sign up</h1>
+      <div className="w-full sm:w-80 mt-16 md:mt-0 mx-auto md:mx-0">  
+        <h1 className="font-bold text-4xl tracking-wide block">Sign up</h1>
         <form onSubmit={handleSignupSubmit} className="mt-4">
 
           <label htmlFor="signupEmail" className="block text-sm text-gray-600 mb-2">Email</label>
