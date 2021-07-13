@@ -25,9 +25,14 @@ const SignIn: React.FC = () => {
       return;
     }
 
-    const result = await API.post(`/login`, {email, password}, {withCredentials: true})
-    login({ at: result.data.accessToken, expire: result.data.expire })
-    router.push('/')
+    try {
+      const result = await API.post(`/login`, {email, password}, {withCredentials: true})
+      login({ at: result.data.accessToken, expire: result.data.expire })
+      router.push('/')
+    } catch (err) {
+      console.log(`login failed with error ${err}`)
+      alert('username or password is incorrect.')
+    }
   }
 
   const handleSignupSubmit = async (clickEvent: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -38,9 +43,16 @@ const SignIn: React.FC = () => {
       return;
     }
 
-    alert(`signup clicked, ${signupEmail}, ${signupPassword}`)
+    try {
+      const result = await API.post(`/signup`, {signupEmail, signupPassword}, {withCredentials: true})
+      console.log(result)
+      login({ at: result.data.accessToken, expire: result.data.expire })
+      router.push('/')
+    } catch (err) {
+      console.log(`signup failed with error ${err}`)
+      alert('A user is already registered to that email address.')
+    }
 
-    router.push('/')
   }
 
   return (
@@ -48,7 +60,7 @@ const SignIn: React.FC = () => {
       {status == 'unauthenticated' && 
       (<>
       <div className="w-full sm:w-80 md:mr-16 mx-auto md:mx-0 justify-center"> 
-        <h1 className="font-bold text-4xl tracking-wide block">Sign In</h1>
+        <h1 className="font-bold text-4xl tracking-wide block text-blue-800">Sign In</h1>
         <form onSubmit={handleSignInSubmit} className="mt-4">
 
           <label htmlFor="email" className="block text-sm text-gray-600 mb-2">Email</label>
@@ -57,15 +69,14 @@ const SignIn: React.FC = () => {
 
           <label htmlFor="password" className="block text-sm text-gray-600 mt-4 mb-2">Password</label>
           <input id="password" value={password} type="password" placeholder="password" className="w-full px-4 py-1 rounded"
-            onChange={e => setPassword(e.target.value)} />
-            
+            onChange={e => setPassword(e.target.value)} />      
           
           <button type="submit" className="bg-blue-800 text-gray-100 py-1 rounded text-center w-full mt-8">Sign In</button>
         </form>
       </div>
 
       <div className="w-full sm:w-80 mt-16 md:mt-0 mx-auto md:mx-0">  
-        <h1 className="font-bold text-4xl tracking-wide block">Sign up</h1>
+        <h1 className="font-bold text-4xl tracking-wide block text-blue-800">Sign up</h1>
         <form onSubmit={handleSignupSubmit} className="mt-4">
 
           <label htmlFor="signupEmail" className="block text-sm text-gray-600 mb-2">Email</label>
@@ -77,7 +88,7 @@ const SignIn: React.FC = () => {
             onChange={e => setSignupPassword(e.target.value)} />
             
           
-          <button type="submit" className="bg-blue-800 text-gray-100 py-1 rounded text-center w-full mt-8">Sign In</button>
+          <button type="submit" className="bg-blue-800 text-gray-100 py-1 rounded text-center w-full mt-8">Sign Up</button>
         </form>
       </div>
       </>)}

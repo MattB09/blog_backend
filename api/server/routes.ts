@@ -1,12 +1,13 @@
 import { Router } from 'express'
 import { getStories, getStory, getUserStories, addStory, editStory, deleteStory, getUploadUrl } from './controller'
-import { login, refreshToken, logout } from './authController'
+import { login, refreshToken, logout, signup } from './authController'
 import { authenticate } from './auth'
 
 const routes = Router()
 
 // auth routes
 routes.post('/login', login)
+routes.post('/signup', signup)
 routes.post('/logout', logout)
 routes.post('/refresh_token', refreshToken)
 
