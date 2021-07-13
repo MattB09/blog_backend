@@ -18,7 +18,7 @@ const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
   }
 
   return (
-    <article className={`p-4 shadow-md rounded flex flex-col justify-between ${story.photo_url !== null && 'row-span-2'}`}>
+    <article className={`p-4 shadow-md rounded flex flex-col justify-between mt-4 sm:mt-0 border border-gray-200 ${story.photo_url !== null && 'row-span-2'}`}>
 
       <div>
 
