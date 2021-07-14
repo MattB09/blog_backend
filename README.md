@@ -1,6 +1,6 @@
 # NextJS_Tailwind
 
-A simple blogging app that allows users to write a blog post consisting of a photo, title, and content. All posts are public. Only signed up users can write or edit their posts. 
+A blogging app that allows users to write a blog post consisting of a photo, title, and content. All posts are public. Only signed up users can write or edit their posts. 
 
 
 ## Screenshots
