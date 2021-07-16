@@ -58,7 +58,7 @@ const addpost:React.FC = () => {
   }
 
   return (
-    <main className="flex flex-col px-4 mt-4 mx-auto sm:w-96">
+    <main className="flex flex-col px-4 mt-4 mx-auto sm:w-104">
       {status === 'authenticated' && (
         <>
           <h1 className="font-bold text-4xl tracking-wide block text-blue-800 mt-4">Add a post</h1>

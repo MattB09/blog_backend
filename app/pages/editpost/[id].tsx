@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { user, status, accessToken } = useAuthContext()
+  const { status, accessToken } = useAuthContext()
   const router = useRouter()
   const [title, setTitle] = useState<string>(story.title)
   const [content, setContent] = useState<string>(story.content)
@@ -70,7 +70,7 @@ const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSid
   }
 
   return (
-    <main className="flex flex-col justify-center px-4 mt-4 mx-auto sm:w-96">
+    <main className="flex flex-col justify-center px-4 mt-4 mx-auto sm:w-104">
       {status === 'authenticated' && (
         <>
           <h1 className="font-bold text-4xl tracking-wide block text-blue-800 mt-4">Edit Post</h1>
