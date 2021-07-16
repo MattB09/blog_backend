@@ -25,7 +25,7 @@ const Layout: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       {status !== 'pending' && 
         (<>
           <Head>
@@ -33,7 +33,9 @@ const Layout: React.FC = ({ children }) => {
             <meta name="description" content="Blog application" />
           </Head>
           <Navbar />
+          <div className="flex-grow">
             { children }
+          </div>
           <Footer />
         </>)
       }
