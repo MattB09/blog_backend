@@ -15,7 +15,7 @@ const Paginator: React.FC<Props> = ({page, pages}) => {
   pagesArr.length === 0 ? pagesArr.push(1) : pagesArr
 
   return (
-    <nav className="my-5 w-full flex justify-center">
+    <nav className="mt-10 w-full flex justify-center">
       <Link href={`${router.pathname}?page=${page - 1}`}>
         <a className={`${page === 1 ? 'opacity-50 pointer-events-none bg-gray-300' : ''} mx-5 py-1 px-2 border border-blue-200 hover:border-blue-400 rounded flex align-center justify-center`}>
           <Image src="/left_arrow.png" alt="previous page" height="12" width="7.41" />
