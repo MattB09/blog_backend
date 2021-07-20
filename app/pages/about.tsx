@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const about: React.FC = () => {
+const About: React.FC = () => {
   return (
     <main className="px-4 mt-4 mx-auto sm:max-w-screen-sm">
       <h1 className="font-bold text-4xl tracking-wide block text-blue-800 mt-16 text-center">About</h1>
@@ -18,4 +18,4 @@ const about: React.FC = () => {
   )
 }
 
-export default about
+export default About

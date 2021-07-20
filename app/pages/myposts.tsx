@@ -6,13 +6,11 @@ import { useAuthContext } from '../components/auth/AuthProvider'
 import API from '../utils/api'
 import { Story, StoriesData } from '../types'
 
-const myposts: React.FC = () => {
+const MyPosts: React.FC = () => {
   const [stories, setStories] = useState<StoriesData | null>(null)
   const { user, status, accessToken } = useAuthContext()
   const router = useRouter()
   const { query } = useRouter()
-  // const [columns, setColumns] = useState(1)
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -28,16 +26,7 @@ const myposts: React.FC = () => {
         setStories(result.data)
       })()
     }
-  }, [status, query])
-
-  // useEffect(()=> {
-  //   window.addEventListener('resize', () => {
-  //     setWindowWidth(window.innerWidth);
-  //   });
-  //   if (windowWidth < 767) setColumns(1);
-  //   else if (windowWidth < 1200) setColumns(2);
-  //   else setColumns(3);
-  // }, [windowWidth])
+  }, [status, query, router, accessToken, user])
 
   const handleDeleteClicked = async (id: number) => {
     let deleted = await API.delete(`/stories/${id}`, {headers: {'Authorization': `${accessToken}`}, withCredentials: true})
@@ -69,4 +58,4 @@ const myposts: React.FC = () => {
 
 }
 
-export default myposts
+export default MyPosts

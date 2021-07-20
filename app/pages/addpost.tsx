@@ -5,7 +5,7 @@ import { useAuthContext } from '../components/auth/AuthProvider'
 import API from '../utils/api'
 import axios from 'axios'
 
-const addpost:React.FC = () => {
+const AddPost:React.FC = () => {
   const { status, accessToken } = useAuthContext()
   const [title, setTitle] = useState<string>('')
   const [content, setContent] = useState<string>('')
@@ -16,7 +16,7 @@ const addpost:React.FC = () => {
     if (status === 'unathenticated') {
       router.push('/')
     }
-  }, [status])
+  }, [status, router])
 
   const handlePostSubmit = async (clickEvent:FormEvent<HTMLFormElement>): Promise<void> => {
     clickEvent.preventDefault()
@@ -88,4 +88,4 @@ const addpost:React.FC = () => {
   )
 }
 
-export default addpost
+export default AddPost

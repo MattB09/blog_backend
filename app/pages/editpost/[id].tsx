@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { status, accessToken } = useAuthContext()
   const router = useRouter()
   const [title, setTitle] = useState<string>(story.title)
@@ -26,7 +26,7 @@ const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSid
     if (status === 'unauthenticated') {
       router.push('/')
     }
-  }, [status])
+  }, [status, router])
 
   const handlePostSubmit = async (clickEvent: FormEvent<HTMLFormElement>): Promise<void> => {
     clickEvent.preventDefault()
@@ -101,4 +101,4 @@ const edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSid
   )
 }
 
-export default edit
+export default Edit

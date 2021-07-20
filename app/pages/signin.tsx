@@ -15,7 +15,7 @@ const SignIn: React.FC = () => {
     if (status === 'authenticated') {
       router.push('/')
     }
-  }, [status])
+  }, [status, router])
 
   const handleSignInSubmit = async (clickEvent:FormEvent<HTMLFormElement>): Promise<void> => {
     clickEvent.preventDefault()
