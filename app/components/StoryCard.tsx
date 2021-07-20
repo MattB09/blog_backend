@@ -49,7 +49,7 @@ const StoryCard: React.FC<Props> = ({story, myStack, deleteFunc}) => {
           </div>
         )}
 
-        <p className="mb-4">{story.content}</p>
+        <pre style={{font: "inherit"}} className="mb-4 whitespace-pre-wrap">{story.content}</pre>
 
       </div>
 

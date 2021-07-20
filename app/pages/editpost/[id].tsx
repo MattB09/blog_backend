@@ -92,7 +92,7 @@ const Edit: React.FC = ({story}: InferGetServerSidePropsType<typeof getServerSid
               </label>
             </div>
 
-            <button type="submit" className="bg-blue-800 hover:bg-blue-900 text-gray-100 rounded px-4 py-1 w-full">Post</button> 
+            <button type="submit" className="bg-blue-800 hover:bg-blue-900 text-gray-100 rounded px-4 py-1 w-full">Save</button> 
 
           </form>
         </>
