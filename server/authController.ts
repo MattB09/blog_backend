@@ -1,5 +1,5 @@
 import pool from './db/index'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { createAccessToken, createRefreshToken, accessTokenExpire, refreshTokenExpire} from './auth'
 
