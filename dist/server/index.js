@@ -9,7 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 require('dotenv').config();
 const routes_1 = __importDefault(require("./routes"));
 const app = express_1.default();
-const allowedOrigins = ['http://localhost:3000', 'https://next-js-tailwind-three.vercel.app'];
+const allowedOrigins = ['http://localhost:3000', 'https://next-js-tailwind-three.vercel.app', 'https://next-js-tailwind-mtgtalz51-mattb09.vercel.app'];
 app.use(cors_1.default({
     origin: function (origin, callback) {
         //allow requests with no origin

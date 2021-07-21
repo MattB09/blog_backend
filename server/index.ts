@@ -7,7 +7,7 @@ import routes from './routes'
 
 const app = express()
 
-const allowedOrigins = ['http://localhost:3000', 'https://next-js-tailwind-three.vercel.app']
+const allowedOrigins = ['http://localhost:3000', 'https://next-js-tailwind-three.vercel.app', 'https://next-js-tailwind-mtgtalz51-mattb09.vercel.app']
 
 app.use(cors({
   origin: function(origin: string | undefined, callback: Function){
