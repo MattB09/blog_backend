@@ -1,0 +1,1 @@
+build: cd api && npm prestart

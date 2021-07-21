@@ -1,1 +1,1 @@
-web: sh -c 'cd api && npm appname'
+web: node api/server/index.js
