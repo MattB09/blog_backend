@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { getStories, getStory, getUserStories, addStory, editStory, deleteStory, getUploadUrl } from './controller'
 import { login, refreshToken, logout, signup } from './authController'
-import { authenticate } from './auth'
+import { authenticate, authenticateRefresh } from './auth'
 
 const routes = Router()
 
@@ -9,7 +9,7 @@ const routes = Router()
 routes.post('/login', login)
 routes.post('/signup', signup)
 routes.post('/logout', logout)
-routes.post('/refresh_token', refreshToken)
+routes.post('/refresh_token', authenticateRefresh, refreshToken)
 
 // get stories, by id, and by user id
 routes.get('/stories', getStories)

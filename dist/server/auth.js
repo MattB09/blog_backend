@@ -37,13 +37,13 @@ const authenticateRefresh = (req, res, next) => {
     if ('rt' in cookies && cookies['rt']) {
         jsonwebtoken_1.default.verify(cookies['rt'], process.env.REFRESH_SECRET, (err, _) => {
             if (err)
-                res.sendStatus(401);
+                res.status(401).json({ ok: 'false', rt: '' });
             else
                 next();
         });
     }
     else {
-        res.sendStatus(401);
+        res.status(401).json({ ok: 'false', rt: '' });
     }
 };
 exports.authenticateRefresh = authenticateRefresh;

@@ -9,7 +9,7 @@ const routes = express_1.Router();
 routes.post('/login', authController_1.login);
 routes.post('/signup', authController_1.signup);
 routes.post('/logout', authController_1.logout);
-routes.post('/refresh_token', authController_1.refreshToken);
+routes.post('/refresh_token', auth_1.authenticateRefresh, authController_1.refreshToken);
 // get stories, by id, and by user id
 routes.get('/stories', controller_1.getStories);
 routes.get('/stories/:id', controller_1.getStory);

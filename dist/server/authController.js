@@ -92,16 +92,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.signup = signup;
 const refreshToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.cookies.rt;
-    if (!token)
-        return res.json({ ok: 'false', rt: '' });
-    let decoded = null;
-    try {
-        decoded = jsonwebtoken_1.default.verify(token, process.env.REFRESH_SECRET);
-    }
-    catch (err) {
-        console.log(err);
-        return res.json({ ok: 'false', rt: '' });
-    }
+    const decoded = jsonwebtoken_1.default.verify(token, process.env.REFRESH_SECRET);
     let user = {
         userId: decoded.userId,
         email: decoded.email,

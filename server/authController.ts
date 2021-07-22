@@ -5,7 +5,6 @@ import { createAccessToken, createRefreshToken, accessTokenExpire, refreshTokenE
 
 import { CookieOptions, Request, Response } from 'express'
 import { UserInfo } from '../types'
-import { IoTSecureTunneling } from 'aws-sdk'
 
 const cookieOps: CookieOptions = {
   httpOnly: true,
@@ -91,16 +90,7 @@ export const signup = async (req: Request, res: Response): Promise<Response> => 
 export const refreshToken = async (req: Request, res: Response): Promise<Response> => {
   const token = req.cookies.rt
 
-  if (!token) return res.json({ ok: 'false', rt: '' })
-
-  let decoded = null;
-
-  try {
-    decoded = jwt.verify(token, process.env.REFRESH_SECRET)
-  } catch (err) {
-    console.log(err)
-    return res.json({ ok: 'false', rt: '' })
-  }
+  const decoded = jwt.verify(token, process.env.REFRESH_SECRET)
 
   let user: UserInfo = { 
     userId: (<any>decoded).userId, 

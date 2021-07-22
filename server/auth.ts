@@ -38,11 +38,11 @@ const authenticateRefresh = (req: Request, res: Response, next: NextFunction) =>
   const { cookies } = req
   if ('rt' in cookies && cookies['rt']) {
     jwt.verify(cookies['rt'], process.env.REFRESH_SECRET, (err: Error, _:any) => {
-      if (err) res.sendStatus(401)
+      if (err) res.status(401).json({ ok: 'false', rt: '' })
       else next()
     })
   } else {
-    res.sendStatus(401)
+    res.status(401).json({ ok: 'false', rt: '' })
   }
 }
 
