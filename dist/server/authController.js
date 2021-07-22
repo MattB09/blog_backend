@@ -37,7 +37,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 };
                 res.cookie('rt', auth_1.createRefreshToken(payload), {
                     expires: new Date(Date.now() + auth_1.refreshTokenExpire),
-                    httpOnly: true
+                    httpOnly: true,
+                    secure: true
                 });
                 return res.status(200).json({
                     accessToken: auth_1.createAccessToken(payload),
@@ -76,7 +77,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 email: user.email,
                 avatar: user.avatar_color
             };
-            res.cookie('rt', auth_1.createRefreshToken(payload), { expires: new Date(Date.now() + auth_1.refreshTokenExpire), httpOnly: true });
+            res.cookie('rt', auth_1.createRefreshToken(payload), { expires: new Date(Date.now() + auth_1.refreshTokenExpire), httpOnly: true, secure: true });
             return res.status(200).json({ accessToken: auth_1.createAccessToken(payload), expire: auth_1.accessTokenExpire });
         }
         catch (err) {
@@ -105,12 +106,12 @@ const refreshToken = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         email: decoded.email,
         avatar: decoded.avatar
     };
-    res.cookie('rt', auth_1.createRefreshToken(user), { expires: new Date(Date.now() + auth_1.refreshTokenExpire), httpOnly: true });
+    res.cookie('rt', auth_1.createRefreshToken(user), { expires: new Date(Date.now() + auth_1.refreshTokenExpire), httpOnly: true, secure: true });
     return res.json({ ok: 'true', accessToken: auth_1.createAccessToken(user), expire: auth_1.accessTokenExpire });
 });
 exports.refreshToken = refreshToken;
 const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.cookie('rt', '', { httpOnly: true });
+    res.cookie('rt', '', { httpOnly: true, secure: true });
     return res.sendStatus(204);
 });
 exports.logout = logout;

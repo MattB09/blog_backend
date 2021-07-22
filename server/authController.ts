@@ -5,6 +5,7 @@ import { createAccessToken, createRefreshToken, accessTokenExpire, refreshTokenE
 
 import { Request, Response } from 'express'
 import { UserInfo } from '../types'
+import { IoTSecureTunneling } from 'aws-sdk'
 
 export const login = async (req: Request, res:Response): Promise<Response> => {
   const email: string = req.body.email
@@ -32,7 +33,8 @@ export const login = async (req: Request, res:Response): Promise<Response> => {
           createRefreshToken(payload), 
           { 
             expires: new Date(Date.now() + refreshTokenExpire),
-            httpOnly: true
+            httpOnly: true,
+            secure: true
           })
         return res.status(200).json({ 
           accessToken: createAccessToken(payload),
@@ -71,7 +73,7 @@ export const signup = async (req: Request, res: Response): Promise<Response> => 
         email: user.email,
         avatar: user.avatar_color
       }
-      res.cookie('rt', createRefreshToken(payload), { expires: new Date(Date.now() + refreshTokenExpire), httpOnly: true })
+      res.cookie('rt', createRefreshToken(payload), { expires: new Date(Date.now() + refreshTokenExpire), httpOnly: true, secure: true })
       return res.status(200).json({ accessToken: createAccessToken(payload), expire: accessTokenExpire })
     } catch (err) {
       return res.status(400).json({error: err})
@@ -101,12 +103,12 @@ export const refreshToken = async (req: Request, res: Response): Promise<Respons
     avatar: (<any>decoded).avatar
   }
 
-  res.cookie('rt', createRefreshToken(user), { expires: new Date(Date.now() + refreshTokenExpire), httpOnly: true })
+  res.cookie('rt', createRefreshToken(user), { expires: new Date(Date.now() + refreshTokenExpire), httpOnly: true, secure: true })
   return res.json({ok: 'true', accessToken: createAccessToken(user), expire: accessTokenExpire })
 }
 
 export const logout = async (req: Request, res: Response): Promise<Response> => {
-  res.cookie('rt', '', { httpOnly: true })
+  res.cookie('rt', '', { httpOnly: true, secure: true })
   return res.sendStatus(204)
 }
 
