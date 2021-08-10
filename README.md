@@ -13,23 +13,23 @@ Login is handled by JWT authentication. Once a user logs in, they receive an acc
 
 To be done completed later
 
-// auth routes
-routes.post('/login', login)
-routes.post('/signup', signup)
-routes.post('/logout', logout)
+// auth routes  
+routes.post('/login', login)  
+routes.post('/signup', signup)  
+routes.post('/logout', logout)  
 routes.post('/refresh_token', authenticateRefresh, refreshToken)
 
-// get stories, by id, and by user id
-routes.get('/stories', getStories)
-routes.get('/stories/:id', getStory)
-routes.get('/users/:id', getUserStories)
+// get stories, by id, and by user id  
+routes.get('/stories', getStories)  
+routes.get('/stories/:id', getStory)  
+routes.get('/users/:id', getUserStories)  
 
-// add, edit, or delete a story
-routes.post('/stories', authenticate, addStory)
-routes.put('/stories/:id', authenticate, editStory)
-routes.delete('/stories/:id', authenticate, deleteStory)
+// add, edit, or delete a story  
+routes.post('/stories', authenticate, addStory)  
+routes.put('/stories/:id', authenticate, editStory)  
+routes.delete('/stories/:id', authenticate, deleteStory)  
 
-// s3 upload url
+// s3 upload url  
 routes.get('/s3upload/:filename', getUploadUrl)
 
 ## Installation
